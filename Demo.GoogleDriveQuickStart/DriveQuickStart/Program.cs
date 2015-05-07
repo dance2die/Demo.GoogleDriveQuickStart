@@ -8,10 +8,16 @@ using Google.Apis.Util.Store;
 
 namespace DriveQuickStart
 {
-	/// <remarks>https://developers.google.com/drive/web/quickstart/quickstart-cs</remarks>
-	class DriveCommandLineSample
+	/// <remarks>
+	/// helpful links
+	/// 
+	/// https://developers.google.com/drive/web/quickstart/quickstart-cs
+	/// https://console.developers.google.com/project/494856075942/apiui/credential?clientType&authuser=0#
+	/// http://stackoverflow.com/questions/tagged/google-drive-sdk
+	/// </remarks>
+	public class DriveCommandLineSample
 	{
-		static void Main(string[] args)
+		public static void Main(string[] args)
 		{
 			UserCredential credential;
 			const string secreteJson = "client_secrets.json";
