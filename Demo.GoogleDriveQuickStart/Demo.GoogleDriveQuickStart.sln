@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DriveQuickStart", "DriveQuickStart\DriveQuickStart.csproj", "{ADD59703-C5CE-4A48-80CD-24B084E76ACE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetListOfFiles", "GetListOfFiles\GetListOfFiles.csproj", "{D92839D8-F8ED-4AFE-88E3-9EA48D50970B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{ADD59703-C5CE-4A48-80CD-24B084E76ACE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ADD59703-C5CE-4A48-80CD-24B084E76ACE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ADD59703-C5CE-4A48-80CD-24B084E76ACE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D92839D8-F8ED-4AFE-88E3-9EA48D50970B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D92839D8-F8ED-4AFE-88E3-9EA48D50970B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D92839D8-F8ED-4AFE-88E3-9EA48D50970B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D92839D8-F8ED-4AFE-88E3-9EA48D50970B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -38,10 +38,12 @@ namespace DriveQuickStart
 				ApplicationName = "Drive API Sample",
 			});
 
-			Google.Apis.Drive.v2.Data.File body = new Google.Apis.Drive.v2.Data.File();
-			body.Title = "My document";
-			body.Description = "A test document";
-			body.MimeType = "text/plain";
+			Google.Apis.Drive.v2.Data.File body = new Google.Apis.Drive.v2.Data.File
+				{
+					Title = "My document",
+					Description = "A test document",
+					MimeType = "text/plain"
+				};
 
 			byte[] byteArray = System.IO.File.ReadAllBytes("document.txt");
 			System.IO.MemoryStream stream = new System.IO.MemoryStream(byteArray);
