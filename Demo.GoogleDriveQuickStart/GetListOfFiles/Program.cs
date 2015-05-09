@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Drive.v2;
+using Google.Apis.Drive.v2.Data;
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
 
@@ -18,14 +18,49 @@ namespace GetListOfFiles
 		{
 			UserCredential credential = GetCredential();
 			DriveService service = GetService(credential);
+			var files = GetFiles(service);
+			DumpFiles(files);
+		}
 
+		private static void DumpFiles(IEnumerable<File> files)
+		{
+			
+		}
+
+		/// <summary>
+		/// Retrieve a list of File resources.
+		/// </summary>
+		/// <param name="service">Drive API service instance.</param>
+		/// <returns>List of File resources.</returns>
+		public static List<File> GetFiles(DriveService service)
+		{
+			List<File> result = new List<File>();
+			FilesResource.ListRequest request = service.Files.List();
+
+			do
+			{
+				try
+				{
+					FileList files = request.Execute();
+
+					result.AddRange(files.Items);
+					request.PageToken = files.NextPageToken;
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine("An error occurred: " + e.Message);
+					request.PageToken = null;
+				}
+			} while (!String.IsNullOrEmpty(request.PageToken));
+			return result;
 		}
 
 		private static UserCredential GetCredential()
 		{
 			UserCredential credential;
 			const string secreteJson = "client_secrets.json";
-			using (var fs = new FileStream(secreteJson, FileMode.Open, FileAccess.Read))
+			using (var fs = new System.IO.FileStream(
+				secreteJson, System.IO.FileMode.Open, System.IO.FileAccess.Read))
 			{
 				credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
 					GoogleClientSecrets.Load(fs).Secrets,
@@ -39,11 +74,11 @@ namespace GetListOfFiles
 
 		private static DriveService GetService(UserCredential credential)
 		{
-			var service = new DriveService(new BaseClientService.Initializer()
-				{
+			var service = new DriveService(new BaseClientService.Initializer
+			{
 				HttpClientInitializer = credential,
-				ApplicationName = "Drive API Sample",
-				});
+				ApplicationName = "Get list of Google Drive Files",
+			});
 			return service;
 		}
 	}
