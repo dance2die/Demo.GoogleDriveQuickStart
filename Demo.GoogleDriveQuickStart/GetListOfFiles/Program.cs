@@ -19,12 +19,34 @@ namespace GetListOfFiles
 			UserCredential credential = GetCredential();
 			DriveService service = GetService(credential);
 			var files = GetFiles(service);
-			DumpFiles(files);
+			//DumpFiles(files);
+			DumpFolders(files);
+
+			Console.ReadLine();
+		}
+
+		private static void DumpFolders(IEnumerable<File> files)
+		{
+			foreach (var file in files.OrderBy(f => f.Title))
+			{
+				if (IsFolder(file))
+					Console.WriteLine("Title: {0}", file.Title);
+			}
 		}
 
 		private static void DumpFiles(IEnumerable<File> files)
 		{
-			
+			foreach (File file in files)
+			{
+				Console.WriteLine(file);
+				Console.WriteLine("Title: {0}; ", file.Title);
+			}
+		}
+
+		private static bool IsFolder(File file)
+		{
+			const string folderMimeType = "application/vnd.google-apps.folder";
+			return string.Compare(file.MimeType, folderMimeType, StringComparison.InvariantCultureIgnoreCase) == 0;
 		}
 
 		/// <summary>
