@@ -20,18 +20,44 @@ namespace GetListOfFiles
 			DriveService service = GetService(credential);
 			var files = GetFiles(service);
 			//DumpFiles(files);
-			DumpFolders(files);
+			DumpFolders(service, files);
 
+			Console.WriteLine("Press ENTER to continue...");
 			Console.ReadLine();
 		}
 
-		private static void DumpFolders(IEnumerable<File> files)
+		private static void DumpFolders(DriveService service, IEnumerable<File> files)
 		{
 			foreach (var file in files.OrderBy(f => f.Title))
 			{
 				if (IsFolder(file))
+				{
 					Console.WriteLine("Title: {0}", file.Title);
+					var childFiles = GetChildFiles(service, file);
+					DumpChildFolders(service, childFiles);
+				}
 			}
+		}
+
+		private static void DumpChildFolders(DriveService service, IEnumerable<ChildReference> childFiles)
+		{
+			foreach (ChildReference childFile in childFiles)
+			{
+				FilesResource.GetRequest getRequest = service.Files.Get(childFile.Id);
+				File file = getRequest.Execute();
+				if (IsFolder(file))
+				{
+					Console.WriteLine("\tChild Title: {0}", file.Title);
+					DumpChildFolders(service, GetChildFiles(service, file));
+				}
+			}
+		}
+
+		private static List<ChildReference> GetChildFiles(DriveService service, File file)
+		{
+			ChildrenResource.ListRequest children = service.Children.List(file.Id);
+			ChildList childList = children.Execute();
+			return new List<ChildReference>(childList.Items);
 		}
 
 		private static void DumpFiles(IEnumerable<File> files)
