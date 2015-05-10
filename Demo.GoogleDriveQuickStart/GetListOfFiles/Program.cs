@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Drive.v2;
 using Google.Apis.Drive.v2.Data;
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
+using File = Google.Apis.Drive.v2.Data.File;
 
 namespace GetListOfFiles
 {
@@ -107,8 +107,8 @@ namespace GetListOfFiles
 		{
 			UserCredential credential;
 			const string secreteJson = "client_secrets.json";
-			using (var fs = new System.IO.FileStream(
-				secreteJson, System.IO.FileMode.Open, System.IO.FileAccess.Read))
+			using (var fs = new FileStream(
+				secreteJson, FileMode.Open, FileAccess.Read))
 			{
 				credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
 					GoogleClientSecrets.Load(fs).Secrets,
