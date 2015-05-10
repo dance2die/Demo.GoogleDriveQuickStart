@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DriveQuickStart", "DriveQui
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetListOfFiles", "GetListOfFiles\GetListOfFiles.csproj", "{D92839D8-F8ED-4AFE-88E3-9EA48D50970B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.GoogleDriveQuickStart.Web", "Demo.GoogleDriveQuickStart.Web\Demo.GoogleDriveQuickStart.Web.csproj", "{AC865CDF-3985-4EFE-8CE7-A8F401338E35}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D92839D8-F8ED-4AFE-88E3-9EA48D50970B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D92839D8-F8ED-4AFE-88E3-9EA48D50970B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D92839D8-F8ED-4AFE-88E3-9EA48D50970B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC865CDF-3985-4EFE-8CE7-A8F401338E35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC865CDF-3985-4EFE-8CE7-A8F401338E35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC865CDF-3985-4EFE-8CE7-A8F401338E35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC865CDF-3985-4EFE-8CE7-A8F401338E35}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
