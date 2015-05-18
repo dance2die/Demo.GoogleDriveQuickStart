@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
@@ -61,8 +62,8 @@ namespace Demo.GoogleDriveQuickStart.Web.Controllers
 		{
 			UserCredential credential;
 			const string secreteJson = @"~\Content\client_secrets.json";
-			using (var fs = new FileStream(
-				secreteJson, FileMode.Open, FileAccess.Read))
+			var path = System.Web.HttpContext.Current.Server.MapPath(secreteJson);
+			using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
 			{
 				credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
 					GoogleClientSecrets.Load(fs).Secrets,
