@@ -18,17 +18,18 @@ namespace DotNetQuickStart
 
 		static void Main(string[] args)
 		{
-			AsyncContext.Run(() => RunExample());
+			AsyncContext.Run(() => RunExampleAsync());
 		}
 
-		private async static void RunExample()
+		private async static void RunExampleAsync()
 		{
 			UserCredential credential;
 
 			using (var stream = new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))
 			{
-				string credentialPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-				credentialPath = Path.Combine(credentialPath, ".credentials/drive-dotnet-quickstart");
+				string credentialPath = Path.Combine(
+					Environment.GetFolderPath(Environment.SpecialFolder.Personal), 
+					".credentials/drive-dotnet-quickstart");
 
 				credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
 					GoogleClientSecrets.Load(stream).Secrets,
