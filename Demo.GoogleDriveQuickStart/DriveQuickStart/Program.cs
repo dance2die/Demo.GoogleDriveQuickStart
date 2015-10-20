@@ -45,10 +45,12 @@ namespace DriveQuickStart
 					MimeType = "text/plain"
 				};
 
-			byte[] byteArray = System.IO.File.ReadAllBytes("document.txt");
-			System.IO.MemoryStream stream = new System.IO.MemoryStream(byteArray);
-
-			FilesResource.InsertMediaUpload request = service.Files.Insert(body, stream, "text/plain");
+			byte[] byteArray = File.ReadAllBytes("document.txt");
+			FilesResource.InsertMediaUpload request;
+			using (MemoryStream stream = new MemoryStream(byteArray))
+			{
+				request = service.Files.Insert(body, stream, "text/plain");
+			}
 			request.Upload();
 
 			Google.Apis.Drive.v2.Data.File file = request.ResponseBody;
